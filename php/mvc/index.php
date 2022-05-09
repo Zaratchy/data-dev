@@ -39,7 +39,7 @@ catch(Exception $e) { // S'il y a eu une erreur, alors...
     echo 'Erreur : ' . $e->getMessage();
 }
 
-//Else more beautiful
+//Else more beautiful, link on the new page error
 // catch(Exception $e) {
 //     $errorMessage = $e->getMessage();
 //     require('view/errorView.php');
