@@ -4,10 +4,38 @@ require('controllers/productsController.php');
 
 
 try {
-        listProducts();
+        
+        if (isset($_GET['action'])) {
+            if ($_GET['action'] == 'listProducts') {
+                listProducts();
+            }
+            elseif ($_GET['action'] == 'product') {
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    product();
+                }
+                else {
+                    // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
+                    throw new Exception('Aucun identifiant de billet envoyé');
+                }
+            }
+            elseif ($_GET['action'] == 'addProduct') {
+                if(!empty($_POST['names']) && !empty($_POST['descriptions']) && !empty($_POST['types'])) {
+                    addProduct($_POST['names'], $_POST['descriptions'],  $_POST['types']);
+                    header('Location: router.php');
+                } else {
+                    throw new Exception('Veuillez remplir tous les champs !');
+                }
+                    }
+                    else {
+                        // Autre exception
+                        throw new Exception('Tous les champs ne sont pas remplis !');
+                    }
+               
+        }
+        else {
+            listProducts();
+        }
     }
-
-catch(Exception $e) { 
-    echo 'Erreur : ' . $e->getMessage();
-}
-
+    catch(Exception $e) { // S'il y a eu une erreur, alors...
+        echo 'Erreur : ' . $e->getMessage();
+    }

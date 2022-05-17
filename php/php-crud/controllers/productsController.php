@@ -12,7 +12,7 @@ function listProducts(){
     $plaque = array();
 
     while ($data = $products->fetch()){
-        switch ($data['type']) {
+        switch ($data['types']) {
             case 0:
                 array_push($flowerArtificial, $data);
                 break;
@@ -27,6 +27,30 @@ function listProducts(){
 
     $products->closeCursor();
 
-    require('./views/home.php');
+    require('./views/listProducts.php');
 
 };
+
+function product() {
+
+    $productsManager = new ProductsManager();
+
+    $product = $productsManager->getProduct($_GET['id']);
+
+    require('./views/product.php');
+
+}
+
+function addProduct($names, $descriptions, $type) {
+
+    $productManager = new ProductsManager();
+
+    $newProduct = $productManager->postProduct($names, $descriptions, $type);
+
+    if ($newProduct === false) {
+
+        throw new Exception('Impossible d\'ajouter un produit !');
+
+    } 
+
+}
