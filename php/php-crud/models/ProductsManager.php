@@ -15,7 +15,7 @@ class ProductsManager extends Manager {
     public function getProduct($productId) {
 
         $db = $this->dbConnect();
-        $products = $db->prepare('SELECT * FROM products WHERE id = ?');
+        $products = $db->prepare('SELECT * FROM products WHERE product_id = ?');
         $products->execute(array($productId));
         $product = $products->fetch();
 
@@ -29,6 +29,15 @@ class ProductsManager extends Manager {
         $newProduct = $products->execute(array($names, $descriptions, $types));
 
         return $newProduct;
+    }
+
+    public function deleteProducts($productId) {
+
+        $db = $this->dbConnect();
+        $products = $db->prepare('DELETE FROM products WHERE product_id = ?');
+        $delete = $products->execute(array($productId));
+
+        return $delete;
     }
 
 }

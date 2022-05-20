@@ -35,7 +35,7 @@ function product() {
 
     $productsManager = new ProductsManager();
 
-    $product = $productsManager->getProduct($_GET['id']);
+    $product = $productsManager->getProduct($_GET['product_id']);
 
     require('./views/product.php');
 
@@ -52,5 +52,15 @@ function addProduct($names, $descriptions, $type) {
         throw new Exception('Impossible d\'ajouter un produit !');
 
     } 
+
+}
+
+function deleteProduct() {
+
+    $productManager = new ProductsManager();
+
+    $deleteProduct = $productManager->deleteProducts($_GET['product_id']);
+
+    header('Location: router.php');
 
 }

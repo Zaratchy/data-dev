@@ -10,7 +10,7 @@ try {
                 listProducts();
             }
             elseif ($_GET['action'] == 'product') {
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                if (isset($_GET['product_id']) && $_GET['product_id'] > 0) {
                     product();
                 }
                 else {
@@ -18,6 +18,15 @@ try {
                     throw new Exception('Aucun identifiant de billet envoyé');
                 }
             }
+            elseif ($_GET['action'] == 'deleteProduct') {
+                if (isset($_GET['product_id']) && $_GET['product_id'] > 0 ) {
+                    deleteProduct();
+                } else {
+                    throw new Exception('Aucun id pour supprimer le produit ?');
+                }
+                
+            }
+
             elseif ($_GET['action'] == 'addProduct') {
                 if(!empty($_POST['names']) && !empty($_POST['descriptions']) && !empty($_POST['types'])) {
                     addProduct($_POST['names'], $_POST['descriptions'],  $_POST['types']);

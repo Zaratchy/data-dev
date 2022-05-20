@@ -22,7 +22,8 @@
                         htmlspecialchars($flowerNaturals['descriptions']);
                     ?>
                 </h3>
-                <a href="router.php?action=product&amp; id=<?= $flowerNaturals['id'] ?>">Voir produit</a>
+                <a href="router.php?action=product&amp; product_id=<?= $flowerNaturals['product_id'] ?>">Voir produit</a>
+                <a href="router.php?action=deleteProduct&amp; product_id=<?= $flowerNaturals['product_id'] ?> ">Supprimer le produit</a>
                     <?php
                         } 
                     ?>
@@ -43,7 +44,8 @@
                     htmlspecialchars($flowerArtificials['descriptions']);
                 ?>
             </h3>
-            <a href="router.php?action=product&amp; id=<?= $flowerArtificials['id'] ?>">Voir produit</a>
+            <a href="router.php?action=product&amp; product_id=<?= $flowerArtificials['product_id'] ?>">Voir produit</a>
+            <a href="router.php?action=deleteProduct&amp; product_id=<?= $flowerArtificials['product_id'] ?> ">Supprimer le produit</a>
                 <?php
                     } 
                 ?>
@@ -65,7 +67,8 @@
                     htmlspecialchars($plaques['descriptions']);
                 ?>
             </h3>
-            <a href="router.php?action=product&amp; id=<?= $plaques['id'] ?>">Voir produit</a>
+            <a href="router.php?action=product&amp; product_id=<?= $plaques['product_id'] ?>">Voir produit</a>
+            <a href="router.php?action=deleteProduct&amp; product_id=<?= $plaques['product_id'] ?> ">Supprimer le produit</a>
                 <?php
                     } 
                 ?>
@@ -75,7 +78,7 @@
     
     <h2>Créer un produit :</h2>
 
-    <form action="router.php?action=addProduct&amp; ?>" method="post">
+    <form action="router.php?action=addProduct&amp;" method="post">
         <div>
             <label for="names">Nom du produit :</label><br />
             <input type="text" id="names" name="names" />
