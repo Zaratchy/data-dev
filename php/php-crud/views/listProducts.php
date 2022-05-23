@@ -23,7 +23,6 @@
                     ?>
                 </h3>
                 <a href="router.php?action=product&amp; product_id=<?= $flowerNaturals['product_id'] ?>">Voir produit</a>
-                <a href="router.php?action=deleteProduct&amp; product_id=<?= $flowerNaturals['product_id'] ?> ">Supprimer le produit</a>
                     <?php
                         } 
                     ?>
@@ -45,7 +44,6 @@
                 ?>
             </h3>
             <a href="router.php?action=product&amp; product_id=<?= $flowerArtificials['product_id'] ?>">Voir produit</a>
-            <a href="router.php?action=deleteProduct&amp; product_id=<?= $flowerArtificials['product_id'] ?> ">Supprimer le produit</a>
                 <?php
                     } 
                 ?>
@@ -68,7 +66,6 @@
                 ?>
             </h3>
             <a href="router.php?action=product&amp; product_id=<?= $plaques['product_id'] ?>">Voir produit</a>
-            <a href="router.php?action=deleteProduct&amp; product_id=<?= $plaques['product_id'] ?> ">Supprimer le produit</a>
                 <?php
                     } 
                 ?>
@@ -89,7 +86,12 @@
         </div>
         <div>
             <label for="types">Types du produit :</label><br />
-            <textarea id="types" name="types"></textarea>
+            <select id="types" name="types">
+                <option value="">--Choisissez le type d'article--</option>
+                <option value="natural">Fleur naturelle</option>
+                <option value="artificial">Fleur artificielle</option>
+                <option value="plaque">Plaque funéraire</option>
+            </select>
         </div>
         <div>
             <input type="submit" />

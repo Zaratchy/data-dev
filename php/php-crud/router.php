@@ -14,7 +14,6 @@ try {
                     product();
                 }
                 else {
-                    // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
                     throw new Exception('Aucun identifiant de billet envoyé');
                 }
             }
@@ -24,8 +23,14 @@ try {
                 } else {
                     throw new Exception('Aucun id pour supprimer le produit ?');
                 }
-                
             }
+            elseif ($_GET['action'] == 'updateProduct') {
+                if (!empty($_POST['names']) && !empty($_POST['descriptions']) && !empty($_POST['types'])) {
+                    updateProduct($_POST['names'], $_POST['descriptions'],  $_POST['types'], $_POST['product_id']);
+                }  else {
+                    throw new Exception('Veuillez remplir tous les champs !');
+                }
+            } 
 
             elseif ($_GET['action'] == 'addProduct') {
                 if(!empty($_POST['names']) && !empty($_POST['descriptions']) && !empty($_POST['types'])) {
@@ -45,6 +50,6 @@ try {
             listProducts();
         }
     }
-    catch(Exception $e) { // S'il y a eu une erreur, alors...
+    catch(Exception $e) { 
         echo 'Erreur : ' . $e->getMessage();
     }

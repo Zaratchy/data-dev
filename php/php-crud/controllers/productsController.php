@@ -13,13 +13,13 @@ function listProducts(){
 
     while ($data = $products->fetch()){
         switch ($data['types']) {
-            case 0:
+            case 'artificial':
                 array_push($flowerArtificial, $data);
                 break;
-            case 1:
+            case 'natural':
                 array_push($flowerNatural, $data);
                 break;
-            case 2:
+            case 'plaque':
                 array_push($plaque, $data);
                 break;
         }
@@ -28,8 +28,7 @@ function listProducts(){
     $products->closeCursor();
 
     require('./views/listProducts.php');
-
-};
+}
 
 function product() {
 
@@ -38,7 +37,6 @@ function product() {
     $product = $productsManager->getProduct($_GET['product_id']);
 
     require('./views/product.php');
-
 }
 
 function addProduct($names, $descriptions, $type) {
@@ -48,11 +46,8 @@ function addProduct($names, $descriptions, $type) {
     $newProduct = $productManager->postProduct($names, $descriptions, $type);
 
     if ($newProduct === false) {
-
         throw new Exception('Impossible d\'ajouter un produit !');
-
     } 
-
 }
 
 function deleteProduct() {
@@ -62,5 +57,13 @@ function deleteProduct() {
     $deleteProduct = $productManager->deleteProducts($_GET['product_id']);
 
     header('Location: router.php');
+}
 
+function updateProduct($names, $descriptions, $types, $productId) {
+
+    $productManager = new ProductsManager();
+
+    $updateProduct = $productManager->updateProducts($names, $descriptions, $types, $productId);
+    
+    header('Location: router.php');
 }

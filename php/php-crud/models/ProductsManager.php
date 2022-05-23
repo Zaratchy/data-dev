@@ -40,4 +40,14 @@ class ProductsManager extends Manager {
         return $delete;
     }
 
+    public function updateProducts($names, $descriptions, $types, $productId) {
+
+        $db = $this->dbConnect();
+        $products = $db->prepare('UPDATE products SET names = ?, descriptions = ?, types = ? WHERE product_id = ?');
+        $update = $products->execute(array($names, $descriptions, $types, $productId));
+
+        return $update;
+
+    }
+
 }
