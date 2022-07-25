@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MySQL</title>
+</head>
+<body>
+    <header>
+        <h1>MySQL</h1>
+    </header>
+    <hr>
+
+    <div>
+        <h2>Création de la base données et utilisation :</h2>
+        <p>CREATE DATA BASE nom_bdd_en_minuscule</p>
+        <h2>Choisir le bdd :</h2>
+        <p>USE nom_de_la_bdd</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Sauvegarder une intruction dans une view :</h2>
+        <p>CREAT VIEW nom_de_la_view__vw AS l'instruction_à_sauvegarder;</p>
+        <h2>Utiliser la view :</h2>
+        <p>SELECT * FROM nom_de_la_view__vw;</p>
+        <h2>Utiliser la view plus autres intructions :</h2>
+        <p>SELECT * FROM nom_de_la_view__vw autres_instructions;</p>
+
+    </div>
+    <hr>
+
+    <div>
+        <h2>Création de table :</h2>
+        <p>CREATE TABLE nom_de_la_table (</p>
+        <p>id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, </p>
+        <p>name VARCHAR(100),</p>
+        <p>email VARCHAR(255) NOT NULL UNIQUE,</p>
+        <p>taille FLOAT,</p>
+        <p>taille BOOLEAN DEFAULT false</p>
+        <p>...</p>
+        <p>);</p>
+        <h2>Voir toutes les tables existantes :</h2>
+        <p>SHOW TABLES nom_de_la_table;</p>
+        <h2>Voir les paramètres d'une table :</h2>
+        <p>SHOW COLUMNS FROM nom_de_la_colonne</p>
+        <h2>Afficher toute une table :</h2>
+        <p>SELECT * FROM nom_de_la_table;</p>
+        <h2>Afficher certaines colonne d'une table :</h2>
+        <p>SELECT nom_colonne1,nom_colonne2 FROM nom_de_la_table;</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Le CRUD</h2>
+        <h3>Ajouter une objet :</h3>
+        <p>INSERT INTO `nom_de_la_table` (`nom_colonne1`,`nom_de_colonne2`,...) VALUE ('valeur1','valeur2',...);</p>
+        <h3>Ajouter plusieurs objets :</h3>
+        <p>INSERT INTO `nom_de_la_table` (`nom_colonne1`,`nom_de_colonne2`,...) VALUE ('valeur1','valeur2',...), ('valeur1','valeur2',...), ... ; </p>
+        <h3>Modifier un objet d'une table :</h3>
+        <p>UPDATE nom_de_la_table SET `nom_de_la_colone_ou_l'on_modifie` = 'valeur_de_modification' WHERE `nom_colonne_pour_trouver_ce_que_l'on_modifie` = 'valeur_pour_trouver_ou_l'on_modifie'; </p>
+        <h3>Supprimer un objet :</h3>
+        <p>DELETE FROM nom_de_la_table WHERE `nom_de_la_colonne_ou_se_trouve_l'objet_à_supprimer` = 'valeur_de_l'objet_à_supprimer';</p>
+        <h3>Afficher un objet :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE `nom_de_la_colonne` = 'valeur_de_la_colonne'; </p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Les opérateurs de comparaison</h2>
+        <h2>Les opérateurs :</h2>
+        <h3>Plus petit que :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne < valeur_chiffre_nombre;</p>
+        <h3>Plus grand que :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne > valeur_chiffre_nombre;</p>
+        <h3>Plus petit et égal à :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne <= valeur_chiffre_nombre;</p>
+        <h3>Plus grand ou égal à :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne >= valeur_chiffre_nombre;</p>
+        <h2>Ordonner les objets :</h2>
+        <h3>Ordonner dans l'ordre croissant :</h3>
+        <p>SELECT * FROM nom_de_la_table ORDER BY nom_de_la_table ASC;</p>
+        <h3>Ordonner dans l'ordre décroissant :</h3>
+        <p>SELECT * FROM nom_de_la_table ORDER BY nom_de_la_table DESC;</p>
+        <h2>Comparaison sur du texte :</h2>
+        <h3>Trouver les objets finissant par :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne LIKE '%valeur_à_trouver';</p>
+        <h3>Trouver les objets commençant par :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne LIKE 'valeur_à_trouver%';</p>
+        <h3>Trouver les objets contenant :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne LIKE '%valeur_à_trouver%';</p>
+        <h2>Comparaison boolean :</h2>
+        <h3>Trouver valeur vrai :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne = true; </p>
+        <h3>Trouver valeur fausse :</h3>
+        <p>SELECT * FROM nom_de_la_table WHERE nom_de_la_colonne = false; </p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Compter les valeurs dans notre table :</h2>
+        <h3>Compter tous les objets d'une table :</h3>
+        <p>SELECT COUNT(*) FROM nom_de_la_table;</p>
+        <h3>Compter les valeurs d'une colonne :</h3>
+        <p>SELECT COUNT(nom_de_la_colonne) FROM nom_de_la_table;</p>
+        <h3>Compter les valeurs unique d'une colonne :</h3>
+        <p>SELECT COUNT(DISTINCT nom_de_la_colonne) FROM nom_de_la_table;</p>
+        <h2>Opération sur des données chiffrées :</h2>
+        <h3>Calculer la moyenne d'un colonne :</h3>
+        <p>SELECT AVG(nom_de_la_colonne) FROM nomde_la_table;</p>
+        <h3>Calculer la somme d'un colonne :</h3>
+        <p>SELECT SUM(nom_de_la_colonne) FROM nomde_la_table;</p>
+        <h3>Calculer le maximum d'un colonne :</h3>
+        <p>SELECT MAX(nom_de_la_colonne) FROM nomde_la_table;</p>
+        <h3>Calculer le minimum d'un colonne :</h3>
+        <p>SELECT MIN(nom_de_la_colonne) FROM nomde_la_table;</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Ajouter une relation entre les tables</h2>
+        <h3>Ajouter une relation one to many / un à plusieurs (2 tables) :</h3>
+        <p>ALTER TABLE nom_de_la_table1 ADD FOREIGN KEY (nom_colonne_table1) REFERENCES nom_table2 (nom_colonne_table2) ON DELETE CASCADE;</p>
+        <h3>Ajouter une relation many to many / plusieurs à plusieurs (3 tables) :</h3>
+        <p>CREATE TABLE nom_de_la_table3 (
+            nom_colonne1_id INT NOT NULL,
+            nom_colonne_2 INT NOT NULL,
+             FOREIGN KEY (nom_colonne1_table3_id) REFERENCES nom_table1 (nom_colonne_table1_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+             FOREIGN KEY (nom_colonne2_table3_id) REFERENCES nom_table2 (nom_colonne_table2_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+             PRIMARY KEY (nom_colonne1_table3_id,nom_colonne_table3_id)
+             ); 
+             </p>
+        <h2>Les jointures</h2>
+        <h3>Afficher la jointure entre 2 tables, relation "one to many / un à plusieurs" :</h3>
+        <p>SELECT * FROM nom_de_la_table1 JOIN `nom_de_la_table2` ON `nom_table1`.`nom_colonne1_id` = `nom_table2`.`nom_colonne2_id`;</p>
+        <h2>Table de liaison</h2>
+        <h3>Afficher la jointure entre 3 tables, relation "many to many / plusieurs à plusieurs" :</h3>
+        <p>SELECT * FROM nom_de_la_table1 JOIN nom_de_la_table2 ON (nom_table1.nom_colonne1_id = nom_table2.nom_colonne2_id) JOIN nom_table3 ON (nom_table3.nom_colonne3_id = nom_table2.nom_colonne2_id):  </p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Modifier la structure de la bdd :</h2>
+        <h3>Ajouter une colonne à la bdd :</h3>
+        <p>ALTER TABLE nom_de_la_table ADD nom_de_la_colonne_à_ajouter les_types_de_la_nouvelle_colonne;</p>
+        <h3>Supprimer une colonne de la bdd :</h3>
+        <p>ALTER TABLE nom_de_la_table DROP nom_de_la_colonne_à_supprimer;</p>
+        <h3>Modifier une colonne de la bdd :</h3>
+        <p>ALTER TABLE nom_de_la_table MODIFY nom_de_la_colonne type_de_la_colonne;</p>
+        <h3>Renommer une colonne de la bdd :</h3>
+        <p>ALTER TABLE nom_de_la_table CHANGE ancien_nom_de_la_colonne nouveau_nom_de_la_colonne type_de_la_colonne;</p>
+
+    </div>
+</body>
+</html>
