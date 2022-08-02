@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Javascript</h1>
+    <hr>
+
+    <h2>Le DOM = Document object model</h2>
+
+    <div>
+        <h2>Cibler les éléments du DOM</h2>
+        <h3>Cibler un id :</h3>
+        <p>const myId = document.getElementById('nom_id');</p>
+        <h3>Cibler une class :</h3>
+        <p>const myClass = document.getElementByClassName('nom_class');</p>
+        <h3>Cibler une balise :</h3>
+        <p>const myBalise = document.getElementByTagName('nom_balise');</p>
+        <h3>Cibler un élément particulier :</h3>
+        <p>const myElement = document.querySelector('#nom_id p.nom_class > a');</p>
+        <h3>Cibler des éléments particuliers :</h3>
+        <p>const myElements = document.querySelectorAll('#nom_id p.nom_class > a');</p>
+        <h3>Cibler les enfants d'un élément :</h3>
+        <p>const childrenElement = document.getElementById('nom_id');</p>
+        <p>childrenElement.children;</p>
+        <h3>Cibler le parent d'un élément :</h3>
+        <p>const parentElement = document.getElementById('nom_id');</p>
+        <p>parentElement.parentElement;</p>
+        <h3>Cibler l'élément suivant :</h3>
+        <p>const nextElement = document.getElementById('nom_id');</p>
+        <p>nextElement.nextElementSibling;</p>
+        <h3>Cibler l'élément avant :</h3>
+        <p>const beforeElement = document.getElementById('nom_id');</p>
+        <p>beforeElement.previousElementSibling;</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Modifier le contenu d'un élément du DOM</h2>
+        <h3>Rempalcer le contenu html d'une balise :</h3>
+        <p>let element = document.getElementById('nom_id');</p>
+        <p>element.innerHTML = "< ul >< li >element1< / li>< li >element2< / li>< li >...< / li>< / ul>"</p>
+        <h3>Résultat =</h3>
+        <ul><li>element1</li><li>element2</li><li>...</li></ul>
+        <h3>Rempalcer le contenu text d'une balise :</h3>
+        <p>let element = document.getElementById('nom_id');</p>
+        <p>element.textContent = "< ul >< li >element1< / li>< li >element2< / li>< li >...< / li>< / ul>"</p>
+        <h3>Résultat =</h3>
+        <p>< ul >< li >element1< / li>< li >element2< / li>< li >...< / li>< / ul>"</p>
+        <h2>Modifier des classes</h2>
+        <h3>Ajouter une class à un élément :</h3>
+        <p>let myElement = document.querySelector('nom_élément');</p>
+        <p>myElement.classList.add('nom_nouvelle_class');</p>
+        <h3>Supprimer une class à un élément :</h3>
+        <p>let myElement = document.querySelector('nom_élément');</p>
+        <p>myElement.classList.remove('nom_class_à_supprimer');</p>
+        <h3>Vérifier qu'une class est contenue par l'élément :</h3>
+        <p>let myElement = document.querySelector('nom_élément');</p>
+        <p>myElement.classList.contains('nom__class');</p>
+        <h3>Remplace une class de l'élément :</h3>
+        <p>let myElement = document.querySelector('nom_élément');</p>
+        <p>myElement.classList.replace('nom_acienne_class', 'nom_nouvelle_class');</p>
+        <h2>Changer le style d'un élément :</h2>
+        <p>myElement = document.getElementClassName('nom_class');</p>
+        <p>myElement.style.nom_style = "paramètre_style";</p>
+        <h3>Exemples =</h3>
+        <p>myElement.style.backgroundColor = "#000";</p>
+        <p>myElement.style.color = "#fff";</p>
+        <h3>Modifier les attributs</h3>
+        <p>let myElement = document.getElementById('nom_id_input');</p>
+        <p>myElemnt.setAttribute('nom_attribut', 'nom_valeur_attribut');</p>
+        <h3>Exemple =</h3>
+        <p>myElement.setAttribute('type', 'password');</p>
+        <p>myElement.setAttribute('name', 'my_password');</p>
+        <p>myElement.setAttribute('value', 'Entrer votre mot de pass');</p>
+        <h3>Créer un nouvelle élément et l'ajouter au DOM entant qu'enfant d'un autre élément parent :</h3>
+        <p>const MynewElement = document.createElement('nom_élément');</p>
+        <h3>Exemple =</h3>
+        <p>const myNewElement = document.createElement('div');</p>
+        <p>const elementParent = document.getElementById('nom_élément_parent');</p>
+        <p>elementParent.appenChild(myNewElement);</p>
+        <h3>Supprimer des éléments :</h3>
+        <p>const myNewElement = document.createElement('div');</p>
+        <p>const elementParent = document.getElementById('nom_élément_parent');</p>
+        <p>elementParent.appenChild(myNewElement);</p>
+        <p>elementParent.removeChild(myNewElement);</p>
+        <h3>Modifier des éléments :</h3>
+        <p>const myNewElement = document.createElement('div');</p>
+        <p>const elementParent = document.getElementById('nom_élément_parent');</p>
+        <p>elementParent.appenChild(myNewElement);</p>
+        <p>elementParent.replaceChild(document.createElement("nom_nouvelle_balise"), myNewElement);</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Les événements</h2>
+        <h3>L'événement onclick :</h3>
+        <h3>Au click sur l'élément changer le text de l'élément :</h3>
+        <p>const element = document.getElementById('mon-lien');</p>
+        <p>element.addEventListener('click', function() {
+            element.innerHTML = "C'est clické !";
+        });</p>
+        <h3>Pour éviter le comportement 1er de l'élément à clicker :</h3>
+        <p>const element = document.getElementById('mon-lien');</p>
+        <p>element.addEventListener('click', function(event) {
+            event.preventDefault();
+        });</p>
+        <h3>Pour éviter que l'événement se propage vers l'élément parent :</h3>
+        <p>elementInterieur.addEventListener('click', function(event) {
+            event.stopPropagation();
+            elementAvecMessage.innerHTML = "Message de l'élément intérieur";
+        });</p>
+        <h3>Détectez le mouvement de la souris :</h3>
+        <p>clientX / clientY = position de la souris dans les coordonnées locales(contenu du DOM)</p>
+        <p>offsetX / offsetY = position de la souris par rapport à l'élément sur lequel on écoute l'événement</p>
+        <p>pageX / pageY = position de la souris par rapport au document entier</p>
+        <p>screenX / screenY = postion de la souris par rapport à la fenêtre du navigateur </p>
+        <p>movementX / movementY = position de la souris par rapport à la position de la souris lors du dernier événement "mousemove"</p>
+        <h3>Exemple :</h3>
+        <p>element.addEventListener('mousemove', function(event) {
+            const x = event.offsetX;
+            const Y = event.offsetY;    
+        });</p>
+        <h3>Récupérer les données d'un input, avec mise à jour auto du text et la retranscrire :</h3>
+        <p>const myInput = document.getElementById('nom_id_input');</p>
+        <p>const myOutput = document.getElementById('nom_output');</p>
+        <p>myInput.addEventListener('input', function(event) {
+            myOutput.innerHTML = event.target.value;
+        } );</p>
+        <h3>Récupérer les données de toutes les balises d'un formulaire :</h3>
+        <p>const mySelect = document.getElementById('nom_id_select');</p>
+        <p>const myOutput = document.getElementById('nom_output');</p>
+        <p>mySelect.addEventListener('change', function(event) {
+            myOutput.innerHTML = event.target.value;
+        });</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Les API, les services web et le protocole HTTP </h2>
+        <h3>Les services web :</h3>
+        <p>Un service web est un programme s'exécutant sur un serveur accessible depuis Internet et fournissant un service.</p>
+        <p>Le but d’un service web est donc de fournir un service à celui qui le demande. Et pour ce faire, il met à disposition une API. </p>
+        <h3>Exemples =</h3>
+        <p>Google est un service web qui vous permet de rechercher des sites web.</p>
+        <p>Une application météo communique avec un service web qui fournit la météo.</p>
+        <h3>Les API (application programming interface) :</h3>
+        <p>L’API correspond à l’ensemble des demandes que l’on peut faire à un service web. Ces demandes sont appelées des requêtes.</p>
+        <h3>Exemple =</h3>
+        <p>Demander la météo actuelle est une requête.</p>
+        <p>Faire une demande d’ami sur un réseau social est une requête</p>
+        <p>Envoyer un message via une application de messagerie est une requête</p>
+        <h3>Le protocole HTTP (HyperText transfer protocol) :</h3>
+        <p> C'est un protocole qui permet de communiquer avec un site Internet.</p>
+        <p>Il permet de =</p>
+        <p>Charger des pages HTML, des styles CSS, des polices de caractères, des images, envoyer des formulaires et de récupérer et d'envoyer toutes sortes de données depuis ou vers un serveur implémentant ce protocole grâce à son API !</p>
+        <h3>Les méthodes HTTP :</h3>
+        <h3>GET =</h3>
+        <p>Permet de récupérer des ressources, comme par exemple le temps actuel sur un service de météo.</p>
+        <h3>POST =</h3>
+        <p>Permet de créer ou modifier une ressource, comme la création d'un nouvel utilisateur sur votre application.</p>
+        <h3>PUT =</h3>
+        <p>Permet de modifier une ressource, comme le nom de l'utilisateur que vous venez de créer avec POST.</p>
+        <h3>DELETE =</h3>
+        <p>Permet de supprimer une ressource, comme un commentaire dans un fil de discussion.</p>
+        <h3>Les codes HTTP :</h3>
+        <h3>200 =</h3>
+        <p>Indique que tout s’est bien passé</p>
+        <h3>400 =</h3>
+        <p>Indique que votre requête n’est pas conforme à ce qui est attendu.</p>
+        <h3>401 =</h3>
+        <p>Indique que vous devez être authentifié pour faire cette requête.</p>
+        <h3>403 =</h3>
+        <p>Indique que vous êtes bien authentifié mais que vous n’êtes pas autorisé à faire cette requête.</p>
+        <h3>404 =</h3>
+        <p>Indique que la ressource demandée n’existe pas.</p>
+        <h3>500 =</h3>
+        <p>Indique une erreur avec le service web.</p>
+    </div>
+
+    <hr>
+    <div>
+        <h2>Récuperez des données d'un service web</h2>
+        <h3>API Fetch : éxécution de requêtes HTTP en asynchrone :</h3>
+        <h3>Création d'une requête HTTP avec la méthode GET :</h3>
+        <p>fetch("nom_url_service_web");</p>
+        <h3>Exemple =</h3>
+        <p>fetch("http://url-service-web.com/api/users");</p>
+        <h3>La requête au service web nous renvoie les données en JSON (javascript object notation)</h3>
+    </div>
+
+
+
+
+
+
+
+    
+    <script src="script.js"></script>
+</body>
+</html>
