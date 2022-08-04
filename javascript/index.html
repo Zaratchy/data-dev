@@ -71,13 +71,17 @@
         <h3>Exemples =</h3>
         <p>myElement.style.backgroundColor = "#000";</p>
         <p>myElement.style.color = "#fff";</p>
-        <h3>Modifier les attributs</h3>
+        <h2>Modifier les attributs</h2>
         <p>let myElement = document.getElementById('nom_id_input');</p>
         <p>myElemnt.setAttribute('nom_attribut', 'nom_valeur_attribut');</p>
         <h3>Exemple =</h3>
         <p>myElement.setAttribute('type', 'password');</p>
-        <p>myElement.setAttribute('name', 'my_password');</p>
+        <p>myElement.setAttribute('disabled', true);</p>
         <p>myElement.setAttribute('value', 'Entrer votre mot de pass');</p>
+        <h3>Supprimer un attribut :</h3>
+        <p>myElement.removeAttribute('nom_attribut_à_supprimer');</p>
+        <h3>Exemple =</h3>
+        <p>myButton.removeAttibute('disabled');</p>
         <h3>Créer un nouvelle élément et l'ajouter au DOM entant qu'enfant d'un autre élément parent :</h3>
         <p>const MynewElement = document.createElement('nom_élément');</p>
         <h3>Exemple =</h3>
@@ -192,15 +196,163 @@
         <h3>Exemple =</h3>
         <p>fetch("http://url-service-web.com/api/users");</p>
         <h3>La requête au service web nous renvoie les données en JSON (javascript object notation)</h3>
+        <h3>Procédure d'appel d'un service web avec l'API fetch:</h3>
+        <p>fetch("nom_url_service_web")</p>
+        <p>.then(function(res) {</p>
+        <p>if(res.ok) {</p>
+        <p>return res.json();</p>
+        <p>}</p>
+        <p>})</p>
+        <p>.then(function(value) {</p>
+        <p>code_utilisant_les_données_du_service_web;</p>
+        <p>})</p>
+        <p>.catch(function(err) {</p>
+        <p>code_erreur;</p>
+        <p>});</p>
+        <h3>Exemple : en cliquant sur un bouton, afficher "Salut" :</h3>
+        <p>function askHello() {
+            fetch("https://mockbin.com/request?greetings=salut")
+                  .then(function(res) {
+              if(res.ok) {
+                return res.json();
+              }
+            })
+            .then(function(value) {
+              document.getElementById('nom_id_ou_le_message_va_apparaitre')
+              .innerHTML = value.queryString.greetings;
+            })
+            .catch(function(err) {
+            })
+          };
+          
+          document.getElementById('id_du_bouton').addEventListener('click', askHello);</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Vérification des données avant l'envoi :</h2>
+        <h3>Vérifier avec les événements "onChange" et/ou "onInput" :</h3>
+        <p>myInput.addEventListener('input', function(event) {
+        const value = event.target.value;
+        condition_sur_la_valeur_dans_l'input;
+        });</p>
+        <h3>Exemple : vérifier que la données dans l'input commence par "Hello" =</h3>
+        <p>myInput.addEventListener('input', function(event) {
+            const value = event.target.value;
+            if (value.startWith('Hello ')) {
+                isValid = true;
+            } else {
+                isValid = false;
+            }   
+            });</p>
+        <h3>Validation avec les Regex :</h3>
+        <h3>Valider texte commençant par un "e" suivi d'au moins 3 chiffres :</h3>
+        <p>function isValid(value) {return /^e[0-9]{3,}$/.test(value);</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Envoyer des données sur le service web</h2>
+        <h3>Méthodes POST et PUT :</h3>
+        <p>fetch("nom_url_service_web", {</p>
+        <p>method: 'POST',</p>
+        <p>header: {</p>
+        <p>'Accept': 'application/json',</p>
+        <p>'Content-Type': 'application/json'</p>
+        <p>},</p>
+        <p>body: JSON.stringify({value: document.getEleemntById('nom_id_input').value})</p>
+        <p>})</p>
+        <p>.then(function(res) {</p>
+        <p>if(res.ok) {</p>
+        <p>return res.json();</p>
+        <p>}</p>
+        <p>})</p>
+        <p>.then(function(value) {</p>
+        <p>code_utilisant_les_données_du_service_web;</p>
+        <p>})</p>
+        <p>.catch(function(err) {</p>
+        <p>code_erreur;</p>
+        <p>});</p>
+        <h3>Exemple : envoyer les données d'un input et les afficher sur la page =</h3>
+        <p>function nom_fonction(event) {
+            event.preventDefault();
+            fetch('https://mockbin.com/request', {
+              method: 'POST',
+              header: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({value: document.getElementById('nom_id_input').value})
+            })
+            .then(function(res) {
+              if(res.ok) {
+                return res.json();
+              }
+            })
+            .then(function(value) {
+              document.getElementById('nom-id-output').innerHTML = value.postData.text;
+            })
+          };
+          
+          document.getElementById('nom_id_form').addEventListener('submit', nom_fonction);
+          </p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Faire de l'asynchrone en JS</h2>
+        <h3>Le JavaScript et synchrone et mono-thread</h3>
+        <h3>Utilisation de l'event Loop pour faire de l'asychrone :</h3>
+        <h3>La fonction setTimeout :</h3>
+        <p>setTimeout(function() {
+            console.log('I'm here!')
+        }, 5000);
+        console.log('Where are you ?');
+        </p>
+        <h3>Les fonction fetch(), then() et catch() sont asynchrones</h3>
+        <h3>Callbacks : fonction que l'on définit, Le principe de la callback  est de la passer en paramètre d'une fonction asynchrone</h3>
+        <p>element.addEventListener('click', function(event) { .... });</p>
+        <h3>Gérez des erreurs callbacks : prendre 2 paramètres dans notre callback, le 2e paramètre est notre donnée et le 1er est l'erreur</h3>
+        <p>fs.readFile(filePath, function(err, data) { if(err) { throw err; } code_à_éxécuter });</p>
+        <h3>Les Promise : un objet Promise qui peut être  resolve  avec un résultat, ou  reject  avec une erreur</h3>
+        <p>functionThatReturnAsPromise().then(function(data) { code_quoi_faire_avec_les_données }).catch(function(err) { code_quoi_faire_avec_l'erreur });</p>
+        <h3>Async / Await : permettent de gérer le code asynchrone de manière beaucoup plus intuitive, en bloquant l'exécution d'un code asynchrone jusqu'à ce qu'il retourne un résultat</h3>
+        <p>async function getNumber1() {
+            return 10;
+          }</p>
+        <p>async function getNumber2() {
+            return 4;
+          }</p>
+        <p>async function compute() {
+            let number1 = await getNumber1();
+            let number2 = await getNumber2();
+            return number1 + number2;
+          }</p>
+        <p>compute()
+            .then(function(res) {
+              document.getElementById('result')
+              .innerHTML = res;
+            })</p>
+    </div>
+    <hr>
+
+    <div>
+        <h2>Optimiser le code</h2>
+        <h3>Linter</h3>
+        <p>Linter va vous permettre de trouver des erreurs dans votre code et de mettre en place des conventions de code</p>
+        <a href="https://www.jslint.com" target="_blank">JSLint</a>
+        <h3>Minifier</h3>
+        <p>Minifier va vous permettre de réduire la taille de votre code pour que les navigateurs le chargent plus vite</p>
+        <a href="https://github.com/srod/node-minify" target="_blank">node-minify</a>
+        <h3>Bundler</h3>
+        <p>Bundler va regrouper tous vos fichiers en un seul afin que le navigateur soit plus rapide à charger votre code</p>
+        <a href="https://webpack.js.org" target="_blank">Webpack</a>
+        <h3>Transpiler</h3>
+        <p>Transpiler va vous permettre d’utiliser les nouvelles fonctionnalités du langage JavaScript tout en restant compatible avec tous les navigateurs</p>
+        <a href="https://babeljs.io" target="_blank">Babel</a>
+        
     </div>
 
-
-
-
-
-
-
-    
     <script src="script.js"></script>
 </body>
 </html>
